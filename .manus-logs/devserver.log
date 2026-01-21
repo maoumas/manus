@@ -1,0 +1,11 @@
+[2026-01-19T20:31:25.705Z] Starting dev server with command: pnpm run dev
+[2026-01-19T20:31:26.577Z] 
+[2026-01-19T20:31:26.577Z] > sarapuma@1.0.0 dev /home/ubuntu/sarapuma
+[2026-01-19T20:31:26.578Z] > vite --host
+[2026-01-19T20:31:26.578Z] 
+[2026-01-19T20:31:27.168Z] 
+[2026-01-19T20:31:27.169Z] VITE v7.1.9  ready in 553 ms
+[2026-01-19T20:31:27.169Z] 
+[2026-01-19T20:31:27.169Z] ➜  Local:   http://localhost:3000/
+[2026-01-19T20:31:27.171Z] ➜  Network: http://169.254.0.21:3000/
+[2026-01-19T20:34:23.696Z] [baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
