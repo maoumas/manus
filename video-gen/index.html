@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VideoGen | Asset Creator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>body { font-family: 'Inter', sans-serif; }</style>
+</head>
+<body class="bg-slate-50 text-slate-900 h-screen flex flex-col">
+
+    <nav class="bg-white border-b border-slate-200 px-6 h-16 flex items-center justify-between">
+        <div class="flex items-center gap-2 font-black text-xl tracking-tighter">
+            <span class="bg-pink-600 text-white px-2 py-1 rounded">VG</span> VideoGen
+        </div>
+        <a href="../index.html" class="text-sm font-medium text-slate-500 hover:text-pink-600">Volver</a>
+    </nav>
+
+    <div class="flex-1 flex flex-col md:flex-row overflow-hidden">
+        <aside class="w-full md:w-80 bg-white border-r border-slate-200 p-6 flex flex-col gap-6 overflow-y-auto z-10 shadow-xl">
+            <div>
+                <label class="block text-xs font-bold text-slate-400 uppercase mb-2">Título Principal</label>
+                <input type="text" id="titleInput" value="COMO USAR MARKDOWN" class="w-full p-3 bg-slate-50 border border-slate-200 rounded-lg font-bold focus:outline-none focus:border-pink-500">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-slate-400 uppercase mb-2">Subtítulo</label>
+                <input type="text" id="subInput" value="Guía para principiantes 2026" class="w-full p-3 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-pink-500">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-slate-400 uppercase mb-2">Color de Fondo</label>
+                <div class="flex gap-2">
+                    <button onclick="setBg('bg-slate-900')" class="w-8 h-8 rounded-full bg-slate-900 ring-2 ring-offset-2 ring-transparent hover:ring-slate-300"></button>
+                    <button onclick="setBg('bg-indigo-600')" class="w-8 h-8 rounded-full bg-indigo-600 ring-2 ring-offset-2 ring-transparent hover:ring-indigo-300"></button>
+                    <button onclick="setBg('bg-pink-600')" class="w-8 h-8 rounded-full bg-pink-600 ring-2 ring-offset-2 ring-transparent hover:ring-pink-300"></button>
+                    <button onclick="setBg('bg-orange-500')" class="w-8 h-8 rounded-full bg-orange-500 ring-2 ring-offset-2 ring-transparent hover:ring-orange-300"></button>
+                </div>
+            </div>
+            <button class="mt-auto bg-slate-900 text-white py-4 rounded-xl font-bold hover:bg-pink-600 transition-colors shadow-lg">
+                <i data-lucide="download" class="inline w-4 h-4 mr-2"></i> Descargar Imagen
+            </button>
+        </aside>
+
+        <main class="flex-1 bg-slate-100 flex items-center justify-center p-8">
+            <div id="canvas" class="aspect-video w-full max-w-4xl bg-slate-900 rounded-2xl shadow-2xl flex flex-col items-center justify-center text-center p-12 relative overflow-hidden transition-colors duration-500">
+                <div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white to-transparent pointer-events-none"></div>
+                
+                <h1 id="previewTitle" class="text-6xl md:text-8xl font-black text-white mb-6 relative z-10 tracking-tight leading-none uppercase drop-shadow-lg">
+                    COMO USAR<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-indigo-400">MARKDOWN</span>
+                </h1>
+                <div id="previewSub" class="bg-white/10 backdrop-blur-md px-6 py-2 rounded-full text-white font-medium border border-white/20 relative z-10">
+                    Guía para principiantes 2026
+                </div>
+
+                <div class="absolute top-8 right-8 bg-pink-600 text-white font-bold text-xs px-3 py-1 rounded shadow-lg rotate-3">
+                    NUEVO VIDEO
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        lucide.createIcons();
+        
+        const titleInput = document.getElementById('titleInput');
+        const subInput = document.getElementById('subInput');
+        const previewTitle = document.getElementById('previewTitle');
+        const previewSub = document.getElementById('previewSub');
+        const canvas = document.getElementById('canvas');
+
+        titleInput.addEventListener('input', (e) => {
+            // Un pequeño hack para colorear la última palabra si hay varias
+            const words = e.target.value.split(' ');
+            if(words.length > 1) {
+                const last = words.pop();
+                previewTitle.innerHTML = `${words.join(' ')}<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-indigo-400">${last}</span>`;
+            } else {
+                previewTitle.innerText = e.target.value;
+            }
+        });
+
+        subInput.addEventListener('input', (e) => previewSub.innerText = e.target.value);
+
+        function setBg(colorClass) {
+            canvas.className = `aspect-video w-full max-w-4xl rounded-2xl shadow-2xl flex flex-col items-center justify-center text-center p-12 relative overflow-hidden transition-colors duration-500 ${colorClass}`;
+        }
+    </script>
+</body>
+</html>
