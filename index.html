@@ -10,9 +10,7 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    animation: {
-                        blob: "blob 7s infinite",
-                    },
+                    animation: { blob: "blob 7s infinite" },
                     keyframes: {
                         blob: {
                             "0%": { transform: "translate(0px, 0px) scale(1)" },
@@ -25,11 +23,9 @@
             },
         }
     </script>
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-    </style>
+    <style>body { font-family: 'Inter', sans-serif; }</style>
 </head>
-<body class="bg-slate-50 text-slate-900 selection:bg-indigo-100 selection:text-indigo-900 overflow-x-hidden">
+<body class="bg-slate-50 text-slate-900 overflow-x-hidden">
 
     <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
         <div class="absolute top-0 left-1/4 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
@@ -55,8 +51,8 @@
             <div class="hidden md:flex items-center gap-8">
                 <a href="#why" class="text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors" data-i18n="nav.why">Why Markdown?</a>
                 <a href="#ecosystem" class="text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors" data-i18n="nav.ecosystem">Ecosystem</a>
-                <a href="https://sarapuma.com/manual.html" class="text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors" data-i18n="nav.docs">Docs</a>
-                <a href="https://sarapuma.com/app.html" class="px-6 py-2.5 text-sm font-bold text-white bg-slate-900 rounded-lg hover:bg-indigo-600 transition-all shadow-lg hover:shadow-indigo-200/50" data-i18n="nav.launch">Launch Console</a>
+                <a href="manual.html" class="text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors" data-i18n="nav.docs">Docs</a>
+                <a href="app.html" class="px-6 py-2.5 text-sm font-bold text-white bg-slate-900 rounded-lg hover:bg-indigo-600 transition-all shadow-lg hover:shadow-indigo-200/50" data-i18n="nav.launch">Launch Console</a>
             </div>
 
             <button class="md:hidden p-2 text-slate-600" onclick="toggleMenu()">
@@ -67,8 +63,8 @@
         <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 bg-white px-6 py-6 space-y-4 shadow-xl absolute w-full">
             <a href="#why" class="block font-medium text-slate-600" onclick="toggleMenu()" data-i18n="nav.why">Why Markdown?</a>
             <a href="#ecosystem" class="block font-medium text-slate-600" onclick="toggleMenu()" data-i18n="nav.ecosystem">Ecosystem</a>
-            <a href="https://sarapuma.com/manual.html" class="block font-medium text-slate-600" data-i18n="nav.docs">Docs</a>
-            <a href="https://sarapuma.com/app.html" class="block font-bold text-indigo-600" data-i18n="nav.launch">Launch App</a>
+            <a href="manual.html" class="block font-medium text-slate-600" data-i18n="nav.docs">Docs</a>
+            <a href="app.html" class="block font-bold text-indigo-600" data-i18n="nav.launch">Launch App</a>
         </div>
     </nav>
 
@@ -94,12 +90,12 @@
             </p>
 
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-                <a href="https://sarapuma.com/app.html" class="group relative inline-flex h-14 items-center justify-center overflow-hidden rounded-xl bg-slate-900 px-8 font-medium text-white transition-all duration-300 hover:bg-indigo-600 hover:shadow-2xl hover:shadow-indigo-500/30 w-full sm:w-auto">
+                <a href="app.html" class="group relative inline-flex h-14 items-center justify-center overflow-hidden rounded-xl bg-slate-900 px-8 font-medium text-white transition-all duration-300 hover:bg-indigo-600 hover:shadow-2xl hover:shadow-indigo-500/30 w-full sm:w-auto">
                     <span class="mr-2 flex items-center gap-2 font-bold text-lg">
                         <span data-i18n="hero.btnPrimary">Start Puma Log</span> <i data-lucide="terminal" class="w-5 h-5"></i>
                     </span>
                 </a>
-                <a href="https://sarapuma.com/manual.html" class="inline-flex h-14 items-center justify-center rounded-xl border border-slate-200 bg-white px-8 font-medium text-slate-700 transition-all hover:border-indigo-200 hover:bg-slate-50 w-full sm:w-auto text-lg" data-i18n="hero.btnSecondary">
+                <a href="manual.html" class="inline-flex h-14 items-center justify-center rounded-xl border border-slate-200 bg-white px-8 font-medium text-slate-700 transition-all hover:border-indigo-200 hover:bg-slate-50 w-full sm:w-auto text-lg" data-i18n="hero.btnSecondary">
                     Read Documentation
                 </a>
             </div>
@@ -135,7 +131,6 @@
                     Why do top developers and creators use Markdown? It's not just text, it's universal structure.
                 </p>
             </div>
-
             <div class="grid md:grid-cols-3 gap-12">
                 <div class="group p-8 rounded-2xl bg-slate-50 border border-slate-100 hover:border-indigo-100 hover:shadow-xl hover:shadow-indigo-100/50 transition-all">
                     <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 mb-6 group-hover:scale-110 transition-transform">
@@ -168,13 +163,13 @@
                 <span class="text-indigo-600 font-bold tracking-wider uppercase text-sm" data-i18n="eco.label">Application Suite</span>
                 <h2 class="text-4xl font-bold text-slate-900" data-i18n="eco.title">SaraPuma Ecosystem</h2>
             </div>
-            <a href="https://sarapuma.com/manual.html" class="text-slate-500 hover:text-indigo-600 font-medium flex items-center gap-1 group">
+            <a href="manual.html" class="text-slate-500 hover:text-indigo-600 font-medium flex items-center gap-1 group">
                 <span data-i18n="eco.link">View full documentation</span> <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
             </a>
         </div>
 
         <div class="grid md:grid-cols-3 gap-8">
-            <a href="https://sarapuma.com/app.html" class="group flex flex-col h-full">
+            <a href="app.html" class="group flex flex-col h-full">
                 <div class="relative h-full bg-white rounded-3xl p-8 shadow-sm border border-slate-200 hover:border-indigo-300 hover:shadow-2xl hover:shadow-indigo-200/40 transition-all duration-300 flex flex-col overflow-hidden">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-50 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-150"></div>
                     <div class="relative w-16 h-16 bg-white border border-slate-100 shadow-lg rounded-2xl flex items-center justify-center text-indigo-600 mb-8 group-hover:-translate-y-1 transition-transform">
@@ -187,7 +182,7 @@
                     </div>
                 </div>
             </a>
-            <a href="https://sarapuma.com/tp/index.html" class="group flex flex-col h-full">
+            <a href="tp/index.html" class="group flex flex-col h-full">
                 <div class="relative h-full bg-white rounded-3xl p-8 shadow-sm border border-slate-200 hover:border-blue-300 hover:shadow-2xl hover:shadow-blue-200/40 transition-all duration-300 flex flex-col overflow-hidden">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-150"></div>
                     <div class="relative w-16 h-16 bg-white border border-slate-100 shadow-lg rounded-2xl flex items-center justify-center text-blue-600 mb-8 group-hover:-translate-y-1 transition-transform">
@@ -200,7 +195,7 @@
                     </div>
                 </div>
             </a>
-            <a href="https://sarapuma.com/video-gen/index.html" class="group flex flex-col h-full">
+            <a href="video-gen/index.html" class="group flex flex-col h-full">
                 <div class="relative h-full bg-white rounded-3xl p-8 shadow-sm border border-slate-200 hover:border-pink-300 hover:shadow-2xl hover:shadow-pink-200/40 transition-all duration-300 flex flex-col overflow-hidden">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-pink-50 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-150"></div>
                     <div class="relative w-16 h-16 bg-white border border-slate-100 shadow-lg rounded-2xl flex items-center justify-center text-pink-600 mb-8 group-hover:-translate-y-1 transition-transform">
@@ -259,15 +254,15 @@
             <div>
                 <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-xs" data-i18n="footer.products">Products</h4>
                 <ul class="space-y-3">
-                    <li><a href="https://sarapuma.com/app.html" class="hover:text-indigo-400 transition-colors">Puma Notes</a></li>
-                    <li><a href="https://sarapuma.com/tp/index.html" class="hover:text-indigo-400 transition-colors">Teleprompter Pro</a></li>
-                    <li><a href="https://sarapuma.com/video-gen/index.html" class="hover:text-indigo-400 transition-colors">VideoGen</a></li>
+                    <li><a href="app.html" class="hover:text-indigo-400 transition-colors">Puma Notes</a></li>
+                    <li><a href="tp/index.html" class="hover:text-indigo-400 transition-colors">Teleprompter Pro</a></li>
+                    <li><a href="video-gen/index.html" class="hover:text-indigo-400 transition-colors">VideoGen</a></li>
                 </ul>
             </div>
             <div>
                 <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-xs" data-i18n="footer.resources">Resources</h4>
                 <ul class="space-y-3">
-                    <li><a href="#" class="hover:text-indigo-400 transition-colors" data-i18n="nav.docs">Docs</a></li>
+                    <li><a href="manual.html" class="hover:text-indigo-400 transition-colors" data-i18n="nav.docs">Docs</a></li>
                     <li><a href="#" class="hover:text-indigo-400 transition-colors">API</a></li>
                 </ul>
             </div>
