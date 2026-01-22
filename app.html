@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puma Log | Console</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        /* Ocultar scrollbar pero permitir scroll */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        textarea:focus { outline: none; }
+    </style>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        slate: { 850: '#151b2e' } // Un tono más oscuro personalizado
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white h-screen flex overflow-hidden text-slate-800">
+
+    <aside class="w-20 lg:w-64 bg-slate-900 text-slate-400 flex flex-col transition-all duration-300 border-r border-slate-800 z-20 flex-shrink-0">
+        <div class="h-16 flex items-center justify-center lg:justify-start lg:px-6 border-b border-slate-800">
+            <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white shadow-lg shadow-indigo-500/30">
+                <i data-lucide="terminal" class="w-5 h-5"></i>
+            </div>
+            <span class="ml-3 font-bold text-slate-100 tracking-tight hidden lg:block">Puma<span class="text-indigo-500">Log</span></span>
+        </div>
+
+        <div class="p-4">
+            <button onclick="createNew()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white p-3 rounded-xl flex items-center justify-center lg:justify-start gap-3 transition-all shadow-lg hover:shadow-indigo-500/20 group">
+                <i data-lucide="plus" class="w-5 h-5 group-hover:rotate-90 transition-transform"></i>
+                <span class="font-medium hidden lg:block">Nueva Nota</span>
+            </button>
+        </div>
+
+        <div class="flex-1 overflow-y-auto no-scrollbar px-2 space-y-1">
+            <div class="px-4 py-2 text-xs font-bold uppercase tracking-wider text-slate-600 hidden lg:block mt-4">Recientes</div>
+            
+            <div class="cursor-pointer p-3 rounded-lg bg-slate-800 text-indigo-400 border-l-4 border-indigo-500 flex items-center gap-3">
+                <i data-lucide="file-text" class="w-4 h-4"></i>
+                <div class="hidden lg:block overflow-hidden">
+                    <p class="text-sm font-medium text-white truncate">Idea para Video</p>
+                    <p class="text-xs text-slate-500 truncate">Hace 2 min</p>
+                </div>
+            </div>
+
+            <div class="cursor-pointer p-3 rounded-lg hover:bg-slate-800/50 hover:text-slate-200 transition-colors flex items-center gap-3">
+                <i data-lucide="hash" class="w-4 h-4"></i>
+                <div class="hidden lg:block overflow-hidden">
+                    <p class="text-sm font-medium truncate">Reunión SaraPuma</p>
+                    <p class="text-xs text-slate-600 truncate">Ayer</p>
+                </div>
+            </div>
+             <div class="cursor-pointer p-3 rounded-lg hover:bg-slate-800/50 hover:text-slate-200 transition-colors flex items-center gap-3">
+                <i data-lucide="code" class="w-4 h-4"></i>
+                <div class="hidden lg:block overflow-hidden">
+                    <p class="text-sm font-medium truncate">Configuración Vercel</p>
+                    <p class="text-xs text-slate-600 truncate">20 Ene</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-4 border-t border-slate-800">
+            <a href="index.html" class="flex items-center gap-3 hover:bg-slate-800 p-2 rounded-lg transition-colors">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-purple-500 to-indigo-500 flex items-center justify-center text-white font-bold text-xs">SP</div>
+                <div class="hidden lg:block">
+                    <p class="text-xs font-medium text-white">SaraPuma Admin</p>
+                    <p class="text-[10px] text-slate-500">Volver al Home</p>
+                </div>
+            </a>
+        </div>
+    </aside>
+
+    <main class="flex-1 flex flex-col h-screen relative bg-slate-50">
+        
+        <header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-6 flex-shrink-0 z-10">
+            <div class="flex items-center text-sm text-slate-500 gap-2">
+                <span class="hidden sm:inline">Mis Notas</span>
+                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                <span class="text-indigo-600 font-medium bg-indigo-50 px-2 py-0.5 rounded-md">Borrador</span>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <span id="save-status" class="text-xs text-slate-400 italic mr-2 transition-opacity opacity-0">Guardado</span>
+                <button onclick="saveContent()" class="bg-slate-900 hover:bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all shadow-md flex items-center gap-2">
+                    <i data-lucide="save" class="w-4 h-4"></i> <span class="hidden sm:inline">Guardar</span>
+                </button>
+            </div>
+        </header>
+
+        <div class="bg-white border-b border-slate-100 px-6 py-2 flex items-center gap-1 overflow-x-auto no-scrollbar">
+            <button class="p-2 text-slate-400 hover:text-slate-800 hover:bg-slate-100 rounded transition" title="Bold"><i data-lucide="bold" class="w-4 h-4"></i></button>
+            <button class="p-2 text-slate-400 hover:text-slate-800 hover:bg-slate-100 rounded transition" title="Italic"><i data-lucide="italic" class="w-4 h-4"></i></button>
+            <div class="w-px h-4 bg-slate-200 mx-2"></div>
+            <button class="p-2 text-slate-400 hover:text-slate-800 hover:bg-slate-100 rounded transition" title="H1"><i data-lucide="heading-1" class="w-4 h-4"></i></button>
+            <button class="p-2 text-slate-400 hover:text-slate-800 hover:bg-slate-100 rounded transition" title="H2"><i data-lucide="heading-2" class="w-4 h-4"></i></button>
+            <div class="w-px h-4 bg-slate-200 mx-2"></div>
+            <button class="p-2 text-slate-400 hover:text-slate-800 hover:bg-slate-100 rounded transition" title="List"><i data-lucide="list" class="w-4 h-4"></i></button>
+            <button class="p-2 text-slate-400 hover:text-slate-800 hover:bg-slate-100 rounded transition" title="Code"><i data-lucide="code-2" class="w-4 h-4"></i></button>
+        </div>
+
+        <div class="flex-1 overflow-y-auto p-6 md:p-12">
+            <div class="max-w-3xl mx-auto h-full flex flex-col">
+                <input type="text" 
+                       placeholder="Título de la Nota..." 
+                       class="text-4xl font-bold text-slate-900 placeholder-slate-300 w-full border-none focus:ring-0 bg-transparent mb-6 p-0"
+                       id="note-title"
+                >
+                
+                <textarea 
+                    id="note-content"
+                    placeholder="Empieza a escribir o usa Markdown..." 
+                    class="w-full flex-1 resize-none border-none focus:ring-0 bg-transparent text-lg text-slate-600 leading-relaxed placeholder-slate-300 font-mono"
+                    spellcheck="false"
+                ></textarea>
+            </div>
+        </div>
+
+        <div class="h-10 bg-white border-t border-slate-100 flex items-center justify-between px-6 text-xs text-slate-400 flex-shrink-0">
+            <div class="flex gap-4">
+                <span id="word-count">0 palabras</span>
+                <span id="char-count">0 caracteres</span>
+            </div>
+            <span>Markdown Activado</span>
+        </div>
+
+    </main>
+
+    <div id="toast" class="fixed bottom-6 right-6 bg-slate-900 text-white px-4 py-3 rounded-lg shadow-2xl flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300 z-50">
+        <div class="bg-green-500 rounded-full p-1">
+            <i data-lucide="check" class="w-3 h-3 text-white"></i>
+        </div>
+        <div>
+            <h4 class="font-bold text-sm">Guardado</h4>
+            <p class="text-xs text-slate-400">Tus cambios están seguros.</p>
+        </div>
+    </div>
+
+    <script>
+        // Inicializar Iconos
+        lucide.createIcons();
+
+        const titleInput = document.getElementById('note-title');
+        const contentInput = document.getElementById('note-content');
+        const wordCountEl = document.getElementById('word-count');
+        const charCountEl = document.getElementById('char-count');
+        const saveStatus = document.getElementById('save-status');
+
+        // Cargar datos si existen
+        window.onload = () => {
+            const savedTitle = localStorage.getItem('puma_title');
+            const savedContent = localStorage.getItem('puma_content');
+            if(savedTitle) titleInput.value = savedTitle;
+            if(savedContent) contentInput.value = savedContent;
+            updateStats();
+        };
+
+        // Contador de palabras y auto-guardado en LocalStorage
+        function updateStats() {
+            const text = contentInput.value;
+            const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+            const chars = text.length;
+            
+            wordCountEl.innerText = `${words} palabras`;
+            charCountEl.innerText = `${chars} caracteres`;
+
+            // Guardado automático silencioso
+            localStorage.setItem('puma_title', titleInput.value);
+            localStorage.setItem('puma_content', contentInput.value);
+        }
+
+        titleInput.addEventListener('input', updateStats);
+        contentInput.addEventListener('input', updateStats);
+
+        // Función de Guardado Manual con Feedback Visual
+        function saveContent() {
+            // Simular guardado
+            localStorage.setItem('puma_title', titleInput.value);
+            localStorage.setItem('puma_content', contentInput.value);
+
+            // Mostrar "Guardado" arriba
+            saveStatus.style.opacity = '1';
+            setTimeout(() => { saveStatus.style.opacity = '0'; }, 2000);
+
+            // Mostrar Toast Notification
+            const toast = document.getElementById('toast');
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        function createNew() {
+            if(confirm("¿Borrar nota actual y crear nueva?")) {
+                titleInput.value = "";
+                contentInput.value = "";
+                updateStats();
+                titleInput.focus();
+            }
+        }
+    </script>
+</body>
+</html>
